@@ -38,6 +38,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 gem 'redcarpet', '~> 3.4'
 gem 'rouge', '~> 3.3'
+gem 'devise', '~> 4.6', '>= 4.6.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
