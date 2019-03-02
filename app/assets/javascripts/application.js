@@ -15,4 +15,10 @@
 //= require rails-ujs
 //= require activestorage
 //= require turbolinks
+//= require taboverride.min.js
 //= require_tree .
+
+$(document).on("turbolinks:load", function() {
+  // enable Tab Override for all textarea elements on the page
+  tabOverride.set(document.getElementsByTagName('textarea'));
+});
