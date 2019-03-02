@@ -8,20 +8,20 @@ unless Blog.exists?
   puts 'Seed blogs'
   Blog.create! user: User.first,
                content: "
-               ```ruby
-               class Service
-                 def initialize(object:)
-                   @object = object
-                 end
+```ruby
+class Service
+  def initialize(object:)
+    @object = object
+  end
 
-                 def call
-                   object.id
-                 end
+  def call
+    object.id
+  end
 
-                 private
+  private
 
-                 attr_reader :object
-               end
-               ```
+  attr_reader :object
+end
+```
                "
 end

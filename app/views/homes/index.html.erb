@@ -1,2 +1,4 @@
 <h1>Homes#index</h1>
 <p>Find me in app/views/homes/index.html.erb</p>
+
+<%= Redcarpet::Markdown.new(BlogRender, fenced_code_blocks: true).render(Blog.first.content).html_safe %>
