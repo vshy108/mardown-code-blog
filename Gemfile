@@ -44,6 +44,10 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
 gem 'faker', '~> 1.9', '>= 1.9.1'
 
+gem 'bootstrap',     '4.1.1'
+gem 'material-sass', '4.1.1'
+gem 'material_icons', '~> 2.2', '>= 2.2.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
