@@ -1,9 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  content: MyText
-  user: one
-
-two:
-  content: MyText
-  user: two
+<% 10.times do |n| %>
+blog_<%= n %>:
+  content: <%= "testing#{n}@test.com" %>
+  user_id: <%= ActiveRecord::FixtureSet.identify("user_#{n}".parameterize.underscore.to_sym) %>
+<% end %>

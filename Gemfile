@@ -42,6 +42,7 @@ gem 'devise', '~> 4.6', '>= 4.6.1'
 gem 'slim-rails', '~> 3.2'
 gem 'jquery-rails', '~> 4.3', '>= 4.3.1'
 gem 'jquery-ui-rails', '~> 6.0', '>= 6.0.1'
+gem 'faker', '~> 1.9', '>= 1.9.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -63,6 +64,13 @@ group :test do
   gem 'selenium-webdriver'
   # Easy installation and use of chromedriver to run system tests with Chrome
   gem 'chromedriver-helper'
+
+  # bring back assigns, assert_template
+  gem 'rails-controller-testing', '~> 1.0', '>= 1.0.2'
+
+  gem 'guard', '~> 2.15'
+  gem 'guard-minitest', '~> 2.4', '>= 2.4.6'
+  gem 'minitest-reporters', '~> 1.3', '>= 1.3.5'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
