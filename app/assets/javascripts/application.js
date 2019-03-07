@@ -19,6 +19,7 @@
 //= require material
 //= require turbolinks
 //= require taboverride.min.js
+//= require toastr.min.js
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {
