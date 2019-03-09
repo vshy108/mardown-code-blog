@@ -47,6 +47,7 @@ gem 'faker', '~> 1.9', '>= 1.9.1'
 gem 'bootstrap',     '4.1.1'
 gem 'material-sass', '4.1.1'
 gem 'material_icons', '~> 2.2', '>= 2.2.1'
+gem 'bullet', '~> 5.9'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
