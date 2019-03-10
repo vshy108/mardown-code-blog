@@ -5,7 +5,7 @@ div.table-responsive
     thead.thead-dark
       tr
         th Title
-        th Status
+        th Tags
         th
         th
         th
@@ -14,7 +14,7 @@ div.table-responsive
       - @blogs.draft.each do |blog|
         tr
           td = blog.title
-          td = blog.status.humanize
+          td = blog.tags.join(',').presence || '-'
           td = link_to 'Show', blog
           td = link_to 'Edit', edit_blog_path(blog)
           td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete
@@ -28,7 +28,7 @@ div.table-responsive
     thead.table-primary
       tr
         th Title
-        th Status
+        th Tags
         th
         th
         th
@@ -37,7 +37,7 @@ div.table-responsive
       - @blogs.published.each do |blog|
         tr
           td = blog.title
-          td = blog.status.humanize
+          td = blog.tags.join(',').presence || '-'
           td = link_to 'Show', blog
           td = link_to 'Edit', edit_blog_path(blog)
           td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete

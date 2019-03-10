@@ -48,6 +48,7 @@ gem 'bootstrap',     '4.1.1'
 gem 'material-sass', '4.1.1'
 gem 'material_icons', '~> 2.2', '>= 2.2.1'
 gem 'bullet', '~> 5.9'
+gem 'select2-rails', '~> 4.0', '>= 4.0.3'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

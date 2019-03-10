@@ -16,10 +16,22 @@ h1
         | Title
       = f.text_field :title, id: 'blogTitle', class: 'form-control', autoFocus: true
   .field
+    = f.label :tags
+    = f.select :tags, [], {}, class: 'form-control select2-tags', multiple: "multiple"
+  .field
     = f.label :content
-    br
+  br
   = f.text_area :content, style: 'width: 100%; height: 60vh; font-size: 16px;', class: 'form-control'
 
   .row.justify-content-around
     .actions = f.submit name: 'status', value: 'Save as Draft', class: 'btn btn-primary btn-lg'
     .actions = f.submit name: 'status', value: 'Publish', class: 'btn btn-primary btn-lg'
+
+javascript:
+  $(document).on("turbolinks:load", function() {
+    $(".select2-tags").select2({
+      theme: "bootstrap",
+      tags: true,
+      tokenSeparators: [',', ' ']
+    })
+  });

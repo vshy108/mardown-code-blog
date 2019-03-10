@@ -9,10 +9,12 @@ h1 Editing blog
           li = message
 
   .form-group
-      .floating-label
         = f.label :title, for: "blogTitle"
           | Title
         = f.text_field :title, id: 'blogTitle', class: 'form-control', autoFocus: true
+  .field
+    = f.label :tags
+  = f.select :tags, @tags, {}, class: 'form-control select2-tags', multiple: "multiple"
   .field
     = f.label :content
     br
@@ -28,3 +30,11 @@ h1 Current View
   .card-body
     = render_markdown(@blog.content)
 
+javascript:
+  $(document).on("turbolinks:load", function() {
+    $(".select2-tags").select2({
+      theme: "bootstrap",
+      tags: true,
+      tokenSeparators: [',', ' '],
+    });
+  });

@@ -4,11 +4,13 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    if params[:search].present?
-      @blogs = current_user.blogs.where("title ilike :q", q: "%#{params[:search]}%")
-    else
-      @blogs = current_user.blogs
-    end
+    @blogs = if params[:search].present?
+               current_user.blogs.where(
+                 'title ilike :q', q: "%#{params[:search]}%"
+               )
+             else
+               current_user.blogs
+             end
   end
 
   def new
@@ -22,7 +24,8 @@ class BlogsController < ApplicationController
       content: blog_params[:content],
       title: blog_params[:title],
       user: current_user,
-      status: status
+      status: status,
+      tags: blog_params[:tags].reject!(&:empty?) # remove empty string
     )
     if @blog.save
       if status == 'draft'
@@ -39,6 +42,8 @@ class BlogsController < ApplicationController
 
   def edit
     @blog = Blog.find(params[:id])
+    # NOTE: Dirty cheat to let select2 display the current tags
+    @tags = @blog.tags.map { |value| [value, value] }
   end
 
   def update
@@ -46,6 +51,7 @@ class BlogsController < ApplicationController
     status = 'draft'
     status = 'published' if params[:status] == 'Publish'
     clone_blog_params = blog_params
+    clone_blog_params[:tags] = blog_params[:tags].reject!(&:empty?)
     clone_blog_params[:status] = status
     if @blog.update(clone_blog_params)
       flash[:success] = if status == 'draft'
@@ -55,6 +61,7 @@ class BlogsController < ApplicationController
                         end
       redirect_to blogs_path
     else
+      @tags = @blog.tags.map { |value| [value, value] }
       render :edit
     end
   end
@@ -73,6 +80,6 @@ class BlogsController < ApplicationController
   private
 
   def blog_params
-    params.require(:blog).permit(:content, :title, :search)
+    params.require(:blog).permit(:content, :title, :search, tags: [])
   end
 end

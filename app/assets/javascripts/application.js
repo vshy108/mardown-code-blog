@@ -20,6 +20,7 @@
 //= require turbolinks
 //= require taboverride.min.js
 //= require toastr.min.js
+//= require select2-full
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {

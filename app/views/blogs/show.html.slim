@@ -1,5 +1,11 @@
 h1 = @blog.title
 small = @blog.status.humanize
+br
+- @blog.tags.each do |tag|
+  span.chip
+    i.chip-icon
+      = tag[0]
+    = tag
 
 .card
   .card-body
