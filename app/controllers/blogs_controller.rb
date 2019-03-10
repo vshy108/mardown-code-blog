@@ -5,9 +5,10 @@ class BlogsController < ApplicationController
 
   def index
     @blogs = if params[:search].present?
-               current_user.blogs.where(
+               blogs = current_user.blogs
+               blogs.where(
                  'title ilike :q', q: "%#{params[:search]}%"
-               )
+               ).or(blogs.where('tags @> ARRAY[?]::varchar[]', [params[:search]]))
              else
                current_user.blogs
              end

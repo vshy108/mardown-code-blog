@@ -19,7 +19,7 @@ html
           = render_nav_link(blogs_path, 'Blog')
         - if current_user.present?
           = form_tag blogs_path, class: 'form-inline my-2 my-lg-0', method: :get
-            = search_field_tag 'search', '', class: 'input form-control mr-sm-2', placeholder:"Search", "aria-label":"Search", value: params[:search]
+            = search_field_tag 'search', '', class: 'input form-control mr-sm-2', placeholder:"Title / Tags", "aria-label":"Search", value: params[:search]
             = submit_tag 'Search', class: 'btn btn-outline-success my-2 my-sm-0'
         - if current_user.present?
           .dropdown
