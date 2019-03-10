@@ -19,6 +19,7 @@ end
 ```
 "
   user_id: user_0
+  title: "sample 1"
   tags: ['ruby', 'rails']
 
 blog_1:
@@ -33,5 +34,6 @@ print w
 ```
 "
   user_id: user_0
+  title: "sample 2"
   tags: ['python', 'rails']
 

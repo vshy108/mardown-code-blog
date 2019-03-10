@@ -1,19 +1,43 @@
-h1 Listing blogs
+h1 Draft blogs
 
-table
-  thead
-    tr
-      th
-      th
-      th
-
-  tbody
-    - @blogs.each do |blog|
+div.table-responsive
+  table.table.table-striped.table-sm
+    thead.thead-dark
       tr
-        td = link_to 'Show', blog
-        td = link_to 'Edit', edit_blog_path(blog)
-        td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete
+        th Title
+        th Status
+        th
+        th
+        th
+
+    tbody
+      - @blogs.draft.each do |blog|
+        tr
+          td = blog.title
+          td = blog.status.humanize
+          td = link_to 'Show', blog
+          td = link_to 'Edit', edit_blog_path(blog)
+          td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
-= link_to 'New Blog', new_blog_path
+h1 Published blogs
+
+div.table-responsive
+  table.table.table-striped.table-sm
+    thead.table-primary
+      tr
+        th Title
+        th Status
+        th
+        th
+        th
+
+    tbody
+      - @blogs.published.each do |blog|
+        tr
+          td = blog.title
+          td = blog.status.humanize
+          td = link_to 'Show', blog
+          td = link_to 'Edit', edit_blog_path(blog)
+          td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete

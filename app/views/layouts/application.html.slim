@@ -16,11 +16,10 @@ html
         ul.navbar-nav.mr-auto.mt-2.mt-lg-0
           = render_nav_link(root_path, 'Home')
           = render_nav_link(blogs_path, 'Blog')
-        - if current_page?(blogs_path)
-          form.form-inline.my-2.my-lg-0
-            input.form-control.mr-sm-2[type="search" placeholder="Search" aria-label="Search"]
-            button.btn.btn-outline-success.my-2.my-sm-0[type="submit"]
-              | Search
+        - if current_user.present?
+          = form_tag blogs_path, class: 'form-inline my-2 my-lg-0', method: :get
+            = search_field_tag 'search', '', class: 'input form-control mr-sm-2', placeholder:"Search", "aria-label":"Search", value: params[:search]
+            = submit_tag 'Search', class: 'btn btn-outline-success my-2 my-sm-0'
         - if current_user.present?
           .dropdown
             button#dropdownMenu2.btn.btn-info.dropdown-toggle[type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"]

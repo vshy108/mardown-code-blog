@@ -8,13 +8,23 @@ h1 Editing blog
         - @blog.errors.full_messages.each do |message|
           li = message
 
-  = f.text_area :content, style: 'width: 100%; height: 60vh; font-size: 16px;', id: 'textbox'
+  .form-group
+      .floating-label
+        = f.label :title, for: "blogTitle"
+          | Title
+        = f.text_field :title, id: 'blogTitle', class: 'form-control', autoFocus: true
+  .field
+    = f.label :content
+    br
+  = f.text_area :content, style: 'width: 100%; height: 60vh; font-size: 16px;', class: 'form-control'
 
-  .actions = f.submit 'Edit'
+  .row.justify-content-around
+    .actions = f.submit name: 'status', value: 'Save as Draft', class: 'btn btn-primary btn-lg'
+    .actions = f.submit name: 'status', value: 'Publish', class: 'btn btn-primary btn-lg'
 
-= render_markdown(@blog.content)
+h1 Current View
 
-=> link_to 'Show', @blog
-'|
-=< link_to 'Back', blogs_path
+.card
+  .card-body
+    = render_markdown(@blog.content)
 
