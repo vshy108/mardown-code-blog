@@ -38,4 +38,5 @@ html
         = javascript_tag "toastr.error('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
       - else
         = javascript_tag "toastr.info('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
-    = yield
+    div style="padding: 12px;"
+      = yield

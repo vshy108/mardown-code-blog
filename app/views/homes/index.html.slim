@@ -2,8 +2,10 @@ h1
   | Create Blog
   == material_icon.library_books.md_24
 
-= render_markdown(Blog.last&.content)
 = form_for @blog do |f|
   = f.text_area :content, style: 'width: 100%; height: 30vh; font-size: 16px;', id: 'textbox'
   .actions
     = f.submit 'Create'
+
+= render_markdown(Blog.last&.content)
+
