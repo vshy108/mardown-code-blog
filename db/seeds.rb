@@ -6,7 +6,7 @@ end
 
 unless Blog.exists?
   puts 'Seed blogs'
-  Blog.create! user: User.first,
+  Blog.create! user: User.first, status: 'draft', tags: ['ruby'],
                content: "
 ```ruby
 class Service

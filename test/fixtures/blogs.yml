@@ -1,7 +1,37 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-<% 10.times do |n| %>
-blog_<%= n %>:
-  content: <%= "testing#{n}@test.com" %>
-  user_id: <%= ActiveRecord::FixtureSet.identify("user_#{n}".parameterize.underscore.to_sym) %>
-<% end %>
+blog_0:
+  content: "
+```ruby
+class Service
+  def initialize(object:)
+    @object = object
+  end
+
+  def call
+    object.id
+  end
+
+  private
+
+  attr_reader :object
+end
+```
+"
+  user_id: user_0
+  tags: ['ruby', 'rails']
+
+blog_1:
+  content: "
+```python
+import whois
+
+data = raw_input(\"Enter a domain: \")
+w = whois.whois(data)
+
+print w
+```
+"
+  user_id: user_0
+  tags: ['python', 'rails']
+
