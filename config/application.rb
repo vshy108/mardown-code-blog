@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require_relative 'boot'
 
 require 'rails/all'
@@ -12,6 +14,12 @@ module CodeBlog
     config.load_defaults 5.2
     config.autoload_paths += %W[#{config.root}/lib] # add this line
     config.eager_load_paths += %W[#{config.root}/lib]
+
+    config.api_only = false
+    config.middleware.use ActionDispatch::Flash
+    config.time_zone = 'Kuala Lumpur'
+    config.i18n.fallbacks = true
+    VERSION = '0.0.1 BETA'
 
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers

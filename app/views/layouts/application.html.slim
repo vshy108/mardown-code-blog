@@ -29,14 +29,17 @@ html
               = button_to "Edit Profile", edit_user_registration_path, method: :get, class: 'dropdown-item'
               = button_to "Logout", destroy_user_session_path, method: :delete, class: 'dropdown-item', type: 'button'
 
-    - flash.each do |message_type, message|
-      - if message_type == 'alert'
-        = javascript_tag "toastr.warning('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
-      - elsif message_type == 'success'
-        = javascript_tag "toastr.success('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
-      - elsif message_type == 'error'
-        = javascript_tag "toastr.error('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
-      - else
-        = javascript_tag "toastr.info('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
+    - if !flash.empty?
+      - flash.each do |message_type, message|
+        - if message_type == 'alert'
+          = javascript_tag "toastr.warning('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
+        - elsif message_type == 'success'
+          = javascript_tag "toastr.success('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
+        - elsif message_type == 'error'
+          = javascript_tag "toastr.error('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
+        - else
+          = javascript_tag "toastr.info('#{message}', '#{message_type.humanize}', {timeOut: 2000, closeButton: true, preventDuplicates: true, positionClass: 'toast-top-center'})"
+      - flash.clear
+
     div style="padding: 12px;"
       = yield
