@@ -1,0 +1,20 @@
+div.table-responsive
+  table.table.table-striped.table-sm
+    thead.thead-dark
+      tr
+        th Title
+        th Tags
+        th Created
+        th Modified
+        th
+        th
+
+    tbody
+      - local_assigns.fetch(:blogs).each do |blog|
+        tr
+          td = link_to blog.title, blog
+          td = blog.tags.join(',').presence || '-'
+          td = blog.created_at.strftime('%F %R')
+          td = blog.updated_at.strftime('%F %R')
+          td = link_to 'Edit', edit_blog_path(blog)
+          td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete

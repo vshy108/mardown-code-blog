@@ -10,3 +10,7 @@ br
 .card
   .card-body
     = render_markdown(@blog.content)
+
+=> link_to 'Edit', edit_blog_path(@blog)
+' |
+=> link_to 'Destroy', @blog, data: { confirm: 'Are you sure?' }, method: :delete
