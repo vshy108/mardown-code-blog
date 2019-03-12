@@ -4,14 +4,18 @@ class BlogsController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    @blogs = if params[:search].present?
-               blogs = current_user.blogs
-               blogs.where(
-                 'title ilike :q', q: "%#{params[:search]}%"
-               ).or(blogs.where('tags @> ARRAY[?]::varchar[]', [params[:search]]))
-             else
-               current_user.blogs
-             end
+    blogs = if params[:search].present?
+              blogs = current_user.blogs
+              blogs.where(
+                'title ilike :q', q: "%#{params[:search]}%"
+              ).or(
+                blogs.where('tags @> ARRAY[?]::varchar[]', [params[:search]])
+              ).order(updated_at: :desc)
+            else
+              current_user.blogs.order(updated_at: :desc)
+            end
+    @draft = blogs.draft
+    @published = blogs.published
   end
 
   def new
