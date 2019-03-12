@@ -11,6 +11,11 @@ br
   .card-body
     = render_markdown(@blog.content)
 
+- if @is_my_blog
+  => link_to 'Edit', edit_blog_path(@blog)
+  ' |
+  => link_to 'Destroy', @blog, data: { confirm: 'Are you sure?' }, method: :delete
+
 javascript:
   $(document).on("turbolinks:load", function() {
     $('.mi').addClass('markdown-mi').removeClass('mi');
