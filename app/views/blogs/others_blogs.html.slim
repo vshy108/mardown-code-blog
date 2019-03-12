@@ -18,3 +18,10 @@ div.table-responsive
           td = blog.tags.join(',').presence || '-'
           td = blog.created_at.strftime('%F %R')
           td = blog.updated_at.strftime('%F %R')
+
+== pagy_bootstrap_responsive_nav(@pagy)
+
+javascript:
+  $(document).on('turbolinks:load', function() {
+    Pagy.init()
+  });

@@ -21,6 +21,7 @@
 //= require taboverride.min.js
 //= require toastr.min.js
 //= require select2-full
+//= require pagy
 //= require_tree .
 
 $(document).on("turbolinks:load", function() {

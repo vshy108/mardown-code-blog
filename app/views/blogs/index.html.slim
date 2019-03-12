@@ -1,9 +1,54 @@
 h1 Draft blogs
+.table-responsive
+  table.table.table-striped.table-sm
+    thead.thead-dark
+      tr
+        th Title
+        th Tags
+        th Created
+        th Modified
+        th
+        th
 
-== render 'table', blogs: @draft
+    tbody
+      - @draft.each do |blog|
+        tr
+          td = link_to blog.title, blog
+          td = blog.tags.join(',').presence || '-'
+          td = blog.created_at.strftime('%F %R')
+          td = blog.updated_at.strftime('%F %R')
+          td = link_to 'Edit', edit_blog_path(blog)
+          td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete
 
 br
 
 h1 Published blogs
 
-== render 'table', blogs: @published
+div.table-responsive
+  table.table.table-striped.table-sm
+    thead.thead-dark
+      tr
+        th Title
+        th Tags
+        th Created
+        th Modified
+        th
+        th
+
+    tbody
+      - @published.each do |blog|
+        tr
+          td = link_to blog.title, blog
+          td = blog.tags.join(',').presence || '-'
+          td = blog.created_at.strftime('%F %R')
+          td = blog.updated_at.strftime('%F %R')
+          td = link_to 'Edit', edit_blog_path(blog)
+          td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete
+
+div#published-cont
+  == pagy_bootstrap_responsive_nav(@pagy)
+
+javascript:
+  $(document).on('turbolinks:load', function() {
+    Pagy.init(document.getElementById("published-cont"));
+  });

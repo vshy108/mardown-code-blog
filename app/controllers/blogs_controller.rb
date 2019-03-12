@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class BlogsController < ApplicationController
+  include Pagy::Backend
   before_action :authenticate_user!
 
   def index
@@ -15,7 +16,7 @@ class BlogsController < ApplicationController
               current_user.blogs.order(updated_at: :desc)
             end
     @draft = blogs.draft
-    @published = blogs.published
+    @pagy, @published = pagy(blogs.published)
   end
 
   def new
@@ -83,7 +84,8 @@ class BlogsController < ApplicationController
   end
 
   def others_blogs
-    @others = Blog.where.not(user: current_user).published.limit(10).includes(:user)
+    others = Blog.where.not(user: current_user).published.includes(:user)
+    @pagy, @others = pagy(others)
   end
 
   private
