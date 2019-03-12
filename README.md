@@ -5,4 +5,5 @@ Create rails app to create programming blog with markdown.
 - [ ] Support preview in create/edit blog pages
 - [ ] Export blogs
 - [ ] Allow to view other users' published blogs
+- [ ] Install Pundit gem for authorization
 

@@ -1,0 +1,20 @@
+h1 Others
+
+div.table-responsive
+  table.table.table-striped.table-sm
+    thead.thead-dark
+      tr
+        th Title
+        th Author
+        th Tags
+        th Created
+        th Modified
+
+    tbody
+      - @others.each do |blog|
+        tr
+          td = link_to blog.title, blog
+          td = blog.user.email
+          td = blog.tags.join(',').presence || '-'
+          td = blog.created_at.strftime('%F %R')
+          td = blog.updated_at.strftime('%F %R')

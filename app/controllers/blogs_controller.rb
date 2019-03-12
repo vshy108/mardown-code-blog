@@ -25,10 +25,9 @@ class BlogsController < ApplicationController
   def create
     status = 'draft'
     status = 'published' if params[:status] == 'Publish'
-    @blog = Blog.new(
+    @blog = current_user.blogs.new(
       content: blog_params[:content],
       title: blog_params[:title],
-      user: current_user,
       status: status,
       tags: blog_params[:tags].reject!(&:empty?) # remove empty string
     )
@@ -46,13 +45,13 @@ class BlogsController < ApplicationController
   end
 
   def edit
-    @blog = Blog.find(params[:id])
+    @blog = current_user.blogs.find(params[:id])
     # NOTE: Dirty cheat to let select2 display the current tags
     @tags = @blog.tags.map { |value| [value, value] }
   end
 
   def update
-    @blog = Blog.find(params[:id])
+    @blog = current_user.blogs.find(params[:id])
     status = 'draft'
     status = 'published' if params[:status] == 'Publish'
     clone_blog_params = blog_params
@@ -72,7 +71,7 @@ class BlogsController < ApplicationController
   end
 
   def show
-    @blog = current_user.blogs.find_by(id: params[:id])
+    @blog = Blog.find_by(id: params[:id])
   end
 
   def destroy
@@ -80,6 +79,10 @@ class BlogsController < ApplicationController
     @blog.destroy
     flash[:success] = 'Success delete.'
     redirect_to blogs_path
+  end
+
+  def others_blogs
+    @others = Blog.where.not(user: current_user).published.limit(10).includes(:user)
   end
 
   private
