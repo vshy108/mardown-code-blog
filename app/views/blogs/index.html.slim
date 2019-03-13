@@ -1,53 +1,21 @@
 h1 Draft blogs
-.table-responsive
-  table.table.table-striped.table-sm
-    thead.thead-dark
-      tr
-        th Title
-        th Tags
-        th Created
-        th Modified
-        th
-        th
 
-    tbody
-      - @draft.each do |blog|
-        tr
-          td = link_to blog.title, blog
-          td = blog.tags.join(',').presence || '-'
-          td = blog.created_at.strftime('%F %R')
-          td = blog.updated_at.strftime('%F %R')
-          td = link_to 'Edit', edit_blog_path(blog)
-          td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete
+== render 'table', blogs: @draft
+
+div#pagy_draft
+  == pagy_bootstrap_responsive_nav(@pagy_draft)
 
 br
 
 h1 Published blogs
 
-div.table-responsive
-  table.table.table-striped.table-sm
-    thead.thead-dark
-      tr
-        th Title
-        th Tags
-        th Created
-        th Modified
-        th
-        th
+== render 'table', blogs: @published
 
-    tbody
-      - @published.each do |blog|
-        tr
-          td = link_to blog.title, blog
-          td = blog.tags.join(',').presence || '-'
-          td = blog.created_at.strftime('%F %R')
-          td = blog.updated_at.strftime('%F %R')
-          td = link_to 'Edit', edit_blog_path(blog), method: :get
-          td = link_to 'Destroy', blog, data: { confirm: 'Are you sure?' }, method: :delete
-
-== pagy_bootstrap_responsive_nav(@pagy)
+div#pagy_published
+  == pagy_bootstrap_responsive_nav(@pagy_published)
 
 javascript:
   $(document).on('turbolinks:load', function() {
-    Pagy.init();
+    Pagy.init(document.getElementById("pagy_draft"));
+    Pagy.init(document.getElementById("pagy_published"));
   });

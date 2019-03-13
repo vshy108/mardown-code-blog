@@ -15,8 +15,8 @@ class BlogsController < ApplicationController
             else
               current_user.blogs.order(updated_at: :desc)
             end
-    @draft = blogs.draft
-    @pagy, @published = pagy(blogs.published)
+    @pagy_draft, @draft = pagy(blogs.draft)
+    @pagy_published, @published = pagy(blogs.published, page_param: :page_published)
   end
 
   def new
