@@ -1,9 +1,3 @@
-h1
-  | Create Blog
-  == material_icon.library_books.md_24
-
-/ TODO: https://github.com/sparksuite/simplemde-markdown-editor
-/ https://github.com/nikolas/markdown-toolbar
 = form_for @blog do |f|
   - if @blog.errors.any?
     #error_explanation
@@ -19,9 +13,7 @@ h1
       = f.text_field :title, id: 'blogTitle', class: 'form-control', autoFocus: true
   .field
     = f.label :tags
-    = f.select :tags, [], {}, class: 'form-control select2-tags', multiple: "multiple"
-  .field
-    = f.label :content
+    = f.select :tags, [], {}, class: 'form-control select2-tags col-sm-12', multiple: "multiple"
   br
   = f.text_area :content, style: 'width: 100%; height: 50vh; font-size: 16px;', class: 'form-control'
 
@@ -31,9 +23,11 @@ h1
 
 javascript:
   $(document).on("turbolinks:load", function() {
+    tabOverride.set(document.getElementById('blog_content'));
+    $('#blog_content').markdownToolbar();
     $(".select2-tags").select2({
       theme: "bootstrap",
       tags: true,
       tokenSeparators: [',', ' ']
-    })
+    });
   });

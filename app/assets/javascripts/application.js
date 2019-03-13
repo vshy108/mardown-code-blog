@@ -19,12 +19,9 @@
 //= require material
 //= require turbolinks
 //= require taboverride.min.js
+//= require commonmark.min.js
+//= require markdown-toolbar.js
 //= require toastr.min.js
 //= require select2-full
 //= require pagy
 //= require_tree .
-
-$(document).on("turbolinks:load", function() {
-  // enable Tab Override for all textarea elements on the page
-  tabOverride.set(document.getElementsByTagName('textarea'));
-});
