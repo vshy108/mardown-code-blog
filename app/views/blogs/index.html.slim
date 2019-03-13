@@ -16,6 +16,12 @@ div#pagy_published
 
 javascript:
   $(document).on('turbolinks:load', function() {
-    Pagy.init(document.getElementById("pagy_draft"));
-    Pagy.init(document.getElementById("pagy_published"));
+    var pagy_draft = document.getElementById("pagy_draft");
+    var pagy_published = document.getElementById("pagy_published");
+    if (pagy_draft) {
+      Pagy.init(pagy_draft);
+    }
+    if (pagy_published) {
+      Pagy.init(pagy_published);
+    }
   });
