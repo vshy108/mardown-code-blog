@@ -22,7 +22,7 @@ module ApplicationHelper
       class_name = 'nav-item active'
     end
     content_tag(
-      :li, content_tag(:a, link_text, href: link_path, class: 'nav-link'),
+      :li, link_to(link_text, link_path, class: 'nav-link', method: :get),
       class: class_name
     )
   end
