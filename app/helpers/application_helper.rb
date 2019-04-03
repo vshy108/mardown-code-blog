@@ -15,7 +15,7 @@ module ApplicationHelper
   end
 
   def render_nav_link(link_path, link_text)
-    return nil if current_user.blank?
+    return nil if link_path != privacy_policy_path && current_user.blank?
 
     class_name = current_page?(link_path) ? 'nav-item active' : 'nav-item'
     if current_page?(root_path) && link_path == root_path

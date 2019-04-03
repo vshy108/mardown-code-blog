@@ -18,6 +18,7 @@ html
           = render_nav_link(root_path, 'Home')
           = render_nav_link(blogs_path, 'Blog')
           = render_nav_link(others_blogs_path, "Others' Blog")
+          = render_nav_link(privacy_policy_path, "Privacy Policy")
         - if current_user.present?
           = form_tag blogs_path, class: 'form-inline my-2 my-lg-0', method: :get
             = search_field_tag 'search', '', class: 'input form-control mr-sm-2', placeholder:"Title / Tags", "aria-label":"Search", value: params[:search]
