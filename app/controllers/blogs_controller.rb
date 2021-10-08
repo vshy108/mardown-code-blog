@@ -7,10 +7,13 @@ class BlogsController < ApplicationController
   def index
     blogs = if params[:search].present?
               blogs = current_user.blogs
+              sanitize_params = ActiveRecord::Base.send(:sanitize_sql_like, params[:search])
               blogs.where(
-                'title ilike :q', q: "%#{params[:search]}%"
+                'title ilike :q', q: "%#{sanitize_params}%"
               ).or(
-                blogs.where('tags @> ARRAY[?]::varchar[]', [params[:search]])
+                blogs.where('tags @> ARRAY[?]::varchar[]', [sanitize_params])
+              ).or(
+                blogs.where('content ilike ?', "%#{sanitize_params}%")
               ).order(updated_at: :desc)
             else
               current_user.blogs.order(updated_at: :desc)
